@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Study Notes</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Study Notes</h1>
+      <button id="generate" class="primary">Generate for this video</button>
+    </header>
+    <p id="status" role="status"></p>
+    <input id="search" type="search" placeholder="Search notes" aria-label="Search notes" />
+    <ul id="list"></ul>
+    <p id="empty" hidden>No notes yet. Open a YouTube video and press Generate.</p>
+    <footer>
+      <button id="export-json">Export all JSON</button>
+      <button id="export-md">Export all Markdown</button>
+      <a id="options" href="#">Options</a>
+    </footer>
+    <script src="../lib/util.js"></script>
+    <script src="../lib/prompts.js"></script>
+    <script src="../lib/pipeline.js"></script>
+    <script src="../lib/store.js"></script>
+    <script src="../lib/export.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>

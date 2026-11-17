@@ -1,0 +1,89 @@
+.ysn-box {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 2147483000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  font: 13px/1.4 Roboto, Arial, sans-serif;
+}
+.ysn-box[hidden] {
+  display: none;
+}
+.ysn-launcher,
+.ysn-action {
+  border: 0;
+  border-radius: 18px;
+  padding: 8px 14px;
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+}
+.ysn-launcher {
+  background: #0f0f0f;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+.ysn-launcher:hover {
+  background: #272727;
+}
+.ysn-box[data-state='busy'] .ysn-launcher {
+  display: none;
+}
+.ysn-toast {
+  width: 300px;
+  max-width: calc(100vw - 32px);
+  box-sizing: border-box;
+  background: #212121;
+  color: #f1f1f1;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+.ysn-box[data-state='idle'] .ysn-toast,
+.ysn-box:not([data-state]) .ysn-toast {
+  display: none;
+}
+.ysn-label {
+  overflow-wrap: anywhere;
+}
+.ysn-track {
+  height: 4px;
+  margin-top: 8px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+}
+.ysn-bar {
+  height: 100%;
+  width: 0;
+  background: #3ea6ff;
+  transition: width 0.3s;
+}
+.ysn-box[data-state='error'] .ysn-bar {
+  background: #ff6b6b;
+}
+.ysn-box[data-state='error'] .ysn-track {
+  display: none;
+}
+.ysn-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 10px;
+}
+.ysn-actions:empty {
+  display: none;
+}
+.ysn-action {
+  background: rgba(255, 255, 255, 0.12);
+  color: #f1f1f1;
+  padding: 6px 12px;
+}
+.ysn-action:hover {
+  background: rgba(255, 255, 255, 0.22);
+}

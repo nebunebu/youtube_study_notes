@@ -1,0 +1,10 @@
+{
+  "name": "yt-study-notes",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "description": "Browser extension that drives YouTube's Ask panel to build thorough study notes",
+  "scripts": {
+    "test": "node --test"
+  }
+}

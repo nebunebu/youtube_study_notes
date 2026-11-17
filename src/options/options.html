@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Study Notes options</title>
+    <style>
+      :root { color-scheme: light dark; }
+      body { max-width: 760px; margin: 24px auto; padding: 0 16px; font: 14px/1.5 system-ui, sans-serif; }
+      h1 { font-size: 20px; }
+      h2 { font-size: 16px; margin-top: 28px; }
+      label { display: block; margin: 12px 0 4px; font-weight: 600; }
+      label.check { font-weight: 400; }
+      .hint { color: gray; font-size: 12px; margin: 0 0 4px; }
+      input[type='number'] { width: 100px; padding: 4px; font: inherit; }
+      textarea { width: 100%; box-sizing: border-box; height: 150px; padding: 6px; font: 12px/1.4 ui-monospace, monospace; }
+      button { margin: 20px 8px 0 0; padding: 6px 14px; font: inherit; }
+      #saved { color: gray; }
+    </style>
+  </head>
+  <body>
+    <h1>Study Notes options</h1>
+
+    <h2>Run</h2>
+    <label for="segmentSec">Video covered per prompt (seconds)</label>
+    <p class="hint">Shorter means more prompts and more detail. Around 180 gave the best depth in testing.</p>
+    <input id="segmentSec" type="number" min="30" max="1800" />
+
+    <label for="maxSegments">Most prompts per video</label>
+    <p class="hint">Long videos get longer segments once this is reached.</p>
+    <input id="maxSegments" type="number" min="1" max="200" />
+
+    <label for="delayMs">Pause between prompts (milliseconds)</label>
+    <input id="delayMs" type="number" min="0" max="60000" />
+
+    <label for="minCharsPerMin">Minimum reply length (characters per minute of video)</label>
+    <p class="hint">Replies below this get one "do it again in full" follow-up. Lower it for slow or mostly visual videos.</p>
+    <input id="minCharsPerMin" type="number" min="0" max="5000" />
+
+    <label class="check"><input id="gapCheck" type="checkbox" /> Finish with a "what did you miss" check</label>
+    <label class="check"><input id="timestampLinks" type="checkbox" /> Make timestamps links back to the video</label>
+    <label class="check"><input id="autoCopy" type="checkbox" /> Copy the notes to the clipboard when a run finishes</label>
+
+    <h2>Prompts</h2>
+    <p class="hint">Leave a box empty to use the built-in prompt (shown greyed). Placeholders: {{title}} {{duration}} {{start}} {{end}} {{titles}} {{typeRule}} {{issues}}.</p>
+    <label for="t-outline">Pass 1: outline</label>
+    <textarea id="t-outline"></textarea>
+    <label for="t-section">Pass 2: notes for one section</label>
+    <textarea id="t-section"></textarea>
+    <label for="t-retry">Follow-up when a reply is too thin</label>
+    <textarea id="t-retry"></textarea>
+    <label for="t-gap">Pass 3: gap check</label>
+    <textarea id="t-gap"></textarea>
+
+    <div>
+      <button id="save">Save</button>
+      <button id="reset">Reset to defaults</button>
+      <span id="saved" role="status"></span>
+    </div>
+
+    <script src="../lib/util.js"></script>
+    <script src="../lib/prompts.js"></script>
+    <script src="../lib/pipeline.js"></script>
+    <script src="../lib/store.js"></script>
+    <script src="options.js"></script>
+  </body>
+</html>

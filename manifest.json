@@ -1,0 +1,55 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube Study Notes",
+  "version": "0.1.0",
+  "description": "Drives YouTube's Ask panel section by section to build thorough study notes, copies them, and keeps an exportable library.",
+  "permissions": ["storage", "unlimitedStorage", "clipboardWrite"],
+  "host_permissions": ["*://www.youtube.com/*"],
+  "background": {
+    "service_worker": "src/background.js",
+    "scripts": ["src/background.js"]
+  },
+  "action": {
+    "default_title": "Study Notes",
+    "default_popup": "src/popup/popup.html"
+  },
+  "options_ui": {
+    "page": "src/options/options.html",
+    "open_in_tab": true
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://www.youtube.com/*"],
+      "js": [
+        "src/lib/util.js",
+        "src/lib/prompts.js",
+        "src/lib/pipeline.js",
+        "src/lib/html-to-md.js",
+        "src/lib/store.js",
+        "src/content/selectors.js",
+        "src/content/ask-driver.js",
+        "src/content/video-info.js",
+        "src/content/ui.js",
+        "src/content/main.js"
+      ],
+      "css": ["src/content/ui.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "commands": {
+    "generate-notes": {
+      "suggested_key": { "default": "Alt+Shift+N" },
+      "description": "Generate study notes for the current video"
+    }
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "yt-study-notes@local",
+      "strict_min_version": "140.0",
+      "data_collection_permissions": { "required": ["none"] }
+    },
+    "gecko_android": {
+      "strict_min_version": "142.0"
+    }
+  }
+}
